@@ -1,6 +1,14 @@
+interface ItemValidationError {
+  message: string;
+  item: any;
+}
+
 export class ArrayValidationError extends Error {
-  constructor(message: string) {
+  detailedErrors: ItemValidationError[];
+
+  constructor(message: string, detailedErrors?: ItemValidationError[]) {
     super(message);
     this.name = "ArrayValidationError";
+    this.detailedErrors = detailedErrors ?? [];
   }
 }
