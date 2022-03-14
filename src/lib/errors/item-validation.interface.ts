@@ -1,4 +1,4 @@
-interface ItemValidationError {
+export interface ItemValidationError {
   message: string;
   item: any;
 }

@@ -1,6 +1,6 @@
+import type { ObjectSchema } from "../schema";
 import { validateSchema } from "..";
 import { ObjectValidationError } from "../errors";
-import type { ObjectSchema } from "../schema";
 import { Validator } from "./validator.interface";
 
 export const ObjectValidator: Validator<ObjectSchema> = {
@@ -10,7 +10,8 @@ export const ObjectValidator: Validator<ObjectSchema> = {
     }
 
     /*
-      Kind reminder, typeof [...] is an 'object'.
+      Can not simply check the typeof as in other validators,
+      typeof T[] will be 'object'.
     */
     if (Array.isArray(data)) {
       throw new ObjectValidationError("Provided value is an array");
@@ -28,7 +29,7 @@ export const ObjectValidator: Validator<ObjectSchema> = {
     /*
       Check if all of the required properties in schema are defined in data 
     */
-    if (schema?.required?.length) {
+    if (schema?.required) {
       if (!schema?.required.every((requiredProperty) => Object.keys(data).includes(requiredProperty))) {
         throw new ObjectValidationError("ERROR");
       }

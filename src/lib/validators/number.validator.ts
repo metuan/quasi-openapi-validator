@@ -1,5 +1,5 @@
-import { NumberValidationError } from "../errors";
 import type { NumberSchema } from "../schema";
+import { NumberValidationError } from "../errors";
 import { Validator } from "./validator.interface";
 
 export const NumberValidator: Validator<NumberSchema> = {

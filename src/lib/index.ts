@@ -1,4 +1,4 @@
-import { ArraySchema, ObjectSchema, SCHEMA, StringSchema } from "./schema";
+import type { ArraySchema, ObjectSchema, SCHEMA, StringSchema } from "./schema";
 import { ArrayValidator, BooleanValidator, NumberValidator, ObjectValidator, StringValidator } from "./validators";
 
 export const validateSchema = (data: any, schema?: SCHEMA): boolean | never => {

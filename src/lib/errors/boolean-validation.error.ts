@@ -1,3 +1,5 @@
+import { ItemValidationError } from "./item-validation.interface";
+
 export class BooleanValidationError extends Error {
   detailedError: ItemValidationError;
 

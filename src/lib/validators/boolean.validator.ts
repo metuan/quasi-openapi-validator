@@ -1,5 +1,5 @@
-import { BooleanValidationError } from "../errors";
 import type { BooleanSchema } from "../schema";
+import { BooleanValidationError } from "../errors";
 import { Validator } from "./validator.interface";
 
 export const BooleanValidator: Validator<BooleanSchema> = {
