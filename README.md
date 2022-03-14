@@ -1,0 +1,1 @@
+# Limited-scope OpenAPI schema validator.
