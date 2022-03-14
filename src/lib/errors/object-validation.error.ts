@@ -1,6 +1,9 @@
 export class ObjectValidationError extends Error {
-  constructor(message: string) {
+  detailedErrors: ItemValidationError[];
+
+  constructor(message: string, detailedErrors?: ItemValidationError[]) {
     super(message);
     this.name = "ObjectValidationError";
+    this.detailedErrors = detailedErrors ?? [];
   }
 }

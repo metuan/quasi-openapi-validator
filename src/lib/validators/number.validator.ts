@@ -10,7 +10,7 @@ export const NumberValidator: Validator<NumberSchema> = {
       TODO: What to do with bigint?
     */
     if (typeof data !== "number") {
-      throw new NumberValidationError(`Type of the value is not 'number'`);
+      throw new NumberValidationError({ item: data, message: `Type of the value is not 'number'` });
     }
 
     return true;

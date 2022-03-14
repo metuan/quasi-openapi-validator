@@ -1,6 +1,9 @@
 export class BooleanValidationError extends Error {
-  constructor(message: string) {
-    super(message);
+  detailedError: ItemValidationError;
+
+  constructor(detailedError: ItemValidationError) {
+    super();
     this.name = "BooleanValidationError";
+    this.detailedError = detailedError;
   }
 }

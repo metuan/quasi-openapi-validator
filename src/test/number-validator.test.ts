@@ -7,79 +7,81 @@ describe("Number validator", () => {
     type: "number",
   };
 
-  describe("Valid", () => {
-    test("Simple number", () => {
-      const data = 1337;
+  test("Should validate random number", () => {
+    const data = Math.floor(Math.random() * 100000);
 
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Zero", () => {
-      const data = 0;
-
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Inifnity", () => {
-      const data = Infinity;
-
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("NaN", () => {
-      const data = NaN;
-
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Pi", () => {
-      const data = Math.PI;
-
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Number constructor (without new)", () => {
-      const data = Number(10);
-
-      expect(NumberValidator.validate(data, schema)).toBe(true);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
   });
 
-  describe("Invalid", () => {
-    test("bigint", () => {
-      const data = BigInt(1233);
+  test("Should validate zero", () => {
+    const data = 0;
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
 
-    test("string", () => {
-      const data = "h1";
+  test("Should validate global property - Infnity", () => {
+    const data = Infinity;
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
 
-    test("boolean", () => {
-      const data = false;
+  test("Should validate global property - NaN", () => {
+    const data = NaN;
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
 
-    test("array", () => {
-      const data = [1, 2, 34];
+  test("Should validate property from Math module - Pi", () => {
+    const data = Math.PI;
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
 
-    test("object", () => {
-      const data = { property: "h2" };
+  test("Should validate Number constructor - casting", () => {
+    const data = Number(10);
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
 
-    test("Number constructor (with new)", () => {
-      const data = new Number(10);
+  test("Should validate number casting number from string", () => {
+    const data = +"10";
 
-      expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
-    });
+    expect(NumberValidator.validate(data, schema)).toBe(true);
+  });
+
+  test("Should throw an error when type mismtach - bigint", () => {
+    const data = BigInt(1233);
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
+  });
+
+  test("Should throw an error when type mismtach - string", () => {
+    const data = "h1";
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
+  });
+
+  test("Should throw an error when type mismtach - boolean", () => {
+    const data = false;
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
+  });
+
+  test("Should throw an error when type mismtach - number[]", () => {
+    const data = [1, 2, 34];
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
+  });
+
+  test("Should throw an error when type mismtach - object", () => {
+    const data = { property: 2 };
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
+  });
+
+  test("Should throw an error when type mismtach - new Number(...)", () => {
+    const data = new Number(10);
+
+    expect(() => NumberValidator.validate(data, schema)).toThrow(NumberValidationError);
   });
 });

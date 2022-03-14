@@ -1,3 +1,4 @@
+import { validateSchema } from "..";
 import { ArrayValidationError } from "../errors";
 import type { ArraySchema } from "../schema";
 import { BooleanValidator } from "./boolean.validator";
@@ -23,27 +24,7 @@ export const ArrayValidator: Validator<ArraySchema> = {
     let validationErrors = [];
     for (let item of data) {
       try {
-        switch (schema?.items.type) {
-          case "number": {
-            NumberValidator.validate(item);
-            break;
-          }
-          case "boolean": {
-            BooleanValidator.validate(item);
-            break;
-          }
-          case "string": {
-            StringValidator.validate(item, schema?.items);
-            break;
-          }
-          case "array": {
-            ArrayValidator.validate(item, schema.items);
-            break;
-          }
-          case "object": {
-            ObjectValidator.validate(item, schema.items);
-          }
-        }
+        validateSchema(item, schema?.items);
       } catch (error) {
         validationErrors.push({ item, message: (error as Error).message });
       }

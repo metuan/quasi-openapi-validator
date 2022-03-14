@@ -1,8 +1,3 @@
-interface ItemValidationError {
-  message: string;
-  item: any;
-}
-
 export class ArrayValidationError extends Error {
   detailedErrors: ItemValidationError[];
 

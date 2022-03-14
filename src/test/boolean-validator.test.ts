@@ -7,55 +7,46 @@ describe("Boolean validator", () => {
     type: "boolean",
   };
 
-  describe("Valid", () => {
-    test("Simple true", () => {
-      const data = true;
+  test("Should validate true and false", () => {
+    const truthy = true;
+    const falsy = false;
 
-      expect(BooleanValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Simple false", () => {
-      const data = false;
-
-      expect(BooleanValidator.validate(data, schema)).toBe(true);
-    });
-
-    test("Boolean expression", () => {
-      const data = !!10;
-
-      expect(BooleanValidator.validate(data, schema)).toBe(true);
-    });
+    expect(BooleanValidator.validate(truthy, schema)).toBe(true);
+    expect(BooleanValidator.validate(falsy, schema)).toBe(true);
   });
 
-  describe("Invalid", () => {
-    test("String", () => {
-      const data = "h1";
+  test("Should validate boolean expression", () => {
+    const data = !!10;
 
-      expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
-    });
+    expect(BooleanValidator.validate(data, schema)).toBe(true);
+  });
+  test("Should throw an error when type mismtach - string", () => {
+    const data = "h1";
 
-    test("Number", () => {
-      const data = 10;
+    expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
+  });
 
-      expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
-    });
+  test("Should throw an error when type mismtach - number", () => {
+    const data = 10;
 
-    test("Symbol", () => {
-      const data = Symbol("h1");
+    expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
+  });
 
-      expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
-    });
+  test("Should throw an error when type mismtach - symbol", () => {
+    const data = Symbol("h1");
 
-    test("Array", () => {
-      const data = ["aaa", "aaa"];
+    expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
+  });
 
-      expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
-    });
+  test("Should throw an error when type mismtach - array", () => {
+    const data = ["aaa", "aaa"];
 
-    test("Object", () => {
-      const data = { property: "h1" };
+    expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
+  });
 
-      expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
-    });
+  test("Should throw an error when type mismtach - object", () => {
+    const data = { property: "h1" };
+
+    expect(() => BooleanValidator.validate(data, schema)).toThrowError(BooleanValidationError);
   });
 });
