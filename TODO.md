@@ -4,5 +4,4 @@
 - Add Github action so on every push / PR tests are being triggered
 
 
-- Add one of validator
 - Add path to the error tracing

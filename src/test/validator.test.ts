@@ -1,5 +1,5 @@
+import type { ArraySchema, BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from "../lib/schema";
 import { validateSchema } from "../lib";
-import { ArraySchema, BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from "../lib/schema";
 import { ArrayValidator, BooleanValidator, NumberValidator, ObjectValidator, StringValidator } from "../lib/validators";
 
 describe("Quasi OPEN API Validator", () => {

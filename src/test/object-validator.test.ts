@@ -6,7 +6,7 @@ describe("Object validator", () => {
   const colorEnum = ["black", "brown", "blue"];
   const petSchema: ObjectSchema = {
     type: "object",
-    properties: { name: { type: "string" }, breed: { type: "string" } },
+    properties: { name: { type: "string" }, breed: { type: "string", enum: ["dog"] } },
     required: ["name", "breed"],
   };
   const personSchema: ObjectSchema = {
@@ -32,7 +32,7 @@ describe("Object validator", () => {
       favouriteColor: "brown",
       pets: [
         { name: "A1", breed: "dog" },
-        { name: "A2", breed: "cat" },
+        { name: "A2", breed: "dog" },
       ],
     };
 

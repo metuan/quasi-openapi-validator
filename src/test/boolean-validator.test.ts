@@ -1,5 +1,5 @@
+import type { BooleanSchema } from "../lib/schema";
 import { BooleanValidationError } from "../lib/errors";
-import { BooleanSchema } from "../lib/schema";
 import { BooleanValidator } from "../lib/validators";
 
 describe("Boolean validator", () => {

@@ -1,5 +1,5 @@
+import type { NumberSchema } from "../lib/schema";
 import { NumberValidationError } from "../lib/errors";
-import { NumberSchema } from "../lib/schema";
 import { NumberValidator } from "../lib/validators";
 
 describe("Number validator", () => {

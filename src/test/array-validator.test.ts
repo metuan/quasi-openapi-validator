@@ -1,5 +1,5 @@
+import type { ArraySchema } from "../lib/schema";
 import { ArrayValidationError } from "../lib/errors";
-import { ArraySchema } from "../lib/schema";
 import { ArrayValidator } from "../lib/validators";
 
 describe("Array validator", () => {
